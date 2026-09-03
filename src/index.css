@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ───────────────────────────────────────────────────────────
+   All colors are HSL triplets consumed as hsl(var(--token)) via
+   tailwind.config.ts. Swap the palette here; components never hardcode color.
+   Light is the default (:root); .dark is applied to <html> by ThemeContext. */
+
+@layer base {
+  :root {
+    /* Warm "editorial" light palette — replace with your brand */
+    --background: 40 33% 94%;
+    --foreground: 30 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 15%;
+
+    --primary: 14 54% 49%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 37 33% 88%;
+    --secondary-foreground: 30 10% 18%;
+
+    --muted: 37 30% 90%;
+    --muted-foreground: 33 12% 52%;
+
+    --accent: 350 52% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 4 70% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 38 30% 89%;
+    --input: 38 30% 89%;
+    --ring: 14 54% 49%;
+
+    --radius: 1rem;
+
+    /* Glass card system */
+    --glass-border: 30 10% 15% / 0.07;
+    --glass-bg: 0 0% 100% / 0.85;
+    --glass-bg-hover: 0 0% 100% / 0.97;
+
+    /* shadcn sidebar component tokens */
+    --sidebar-background: 40 30% 96%;
+    --sidebar-foreground: 30 10% 18%;
+    --sidebar-primary: 14 54% 49%;
+    --sidebar-primary-foreground: 40 33% 97%;
+    --sidebar-accent: 37 33% 90%;
+    --sidebar-accent-foreground: 30 10% 18%;
+    --sidebar-border: 38 30% 89%;
+    --sidebar-ring: 14 54% 49%;
+  }
+
+  .dark {
+    --background: 30 8% 9%;
+    --foreground: 40 20% 92%;
+
+    --card: 30 8% 12%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 30 8% 12%;
+    --popover-foreground: 40 20% 92%;
+
+    --primary: 14 60% 58%;
+    --primary-foreground: 30 8% 10%;
+
+    --secondary: 30 6% 18%;
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 30 6% 16%;
+    --muted-foreground: 33 8% 62%;
+
+    --accent: 350 45% 62%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 4 60% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 6% 20%;
+    --input: 30 6% 20%;
+    --ring: 14 60% 58%;
+
+    --glass-border: 40 20% 92% / 0.08;
+    --glass-bg: 30 8% 14% / 0.7;
+    --glass-bg-hover: 30 8% 16% / 0.9;
+
+    --sidebar-background: 30 8% 11%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 14 60% 58%;
+    --sidebar-primary-foreground: 30 8% 10%;
+    --sidebar-accent: 30 6% 18%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 30 6% 20%;
+    --sidebar-ring: 14 60% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ─── Typography ─── */
+.font-editorial {
+  font-family: 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+/* ─── Utilities ─── */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .glass-card {
+    background: hsla(var(--glass-bg));
+    border: 1px solid hsla(var(--glass-border));
+    border-radius: 1.25rem;
+    backdrop-filter: blur(24px) saturate(1.3);
+    box-shadow:
+      0 0 0 0.5px hsla(var(--glass-border)),
+      0 8px 30px -14px hsla(30 10% 15% / 0.18),
+      inset 0 1px 0 0 hsla(0 0% 100% / 0.6);
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsla(var(--foreground) / 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(var(--foreground) / 0.25);
+}
